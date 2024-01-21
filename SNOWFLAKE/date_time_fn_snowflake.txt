@@ -1,0 +1,129 @@
+create database demo_database;
+use database demo_database;
+
+select current_date();
+select current_time();
+select current_timestamp();
+
+-- convert timezone
+select convert_timezone('UTC',current_timestamp) as utc_timezone;
+select convert_timezone('GMT',current_timestamp) as gmt_timezone;
+SELECT CONVERT_TIMEZONE('Europe/Warsaw', 'UTC', '2019-01-01 00:00:00'::timestamp_ntz) AS conv;
+select convert_timezone('America/Los_Angeles',current_timestamp) as america_timezone;
+
+-- date_trunc & to_date() fn
+
+-- get yr from date
+select date_trunc('year',current_date) as yr_from_date; 
+-- 2024-01-01 -will show year. month and date will be set to 1
+select date_trunc('year',to_date('2018-04-14')) as yr_from_date; 
+
+
+-- get month from date
+select date_trunc('month',current_date) as month_from_date;
+select date_trunc('month',to_date('2018-04-14')) as month_from_date; 
+select date_trunc('month',date('2018-04-14')) as month_from_date; 
+
+
+
+-- get day from date
+select date_trunc('day',current_date) as day_from_date;
+select date_trunc('day',to_date('2018-04-14')) as yr_from_date; 
+
+
+select date_trunc('week',to_date('2024-01-20')) as week_from_date; -- gives date of immediate monday
+
+ select month(current_timestamp() ) as month ,
+  day( current_timestamp() ) as day ,
+  hour(current_timestamp()) as hour,
+  minute(current_timestamp()) as minute,
+  second(current_timestamp()) as second;
+
+  -- number of week from start of the year
+  select week(current_date) as week_from_start_of_the_year;
+  select week(to_date('2024-02-01')) as week_from_start_of_the_year;
+
+  select month(current_date) as month_from_start_of_the_year;
+  select month(to_date('2024-02-01')) as month_from_start_of_the_year;
+
+  select day(current_date) as day_from_start_of_the_year;
+  select day(to_date('2024-02-01')) as day_of_month;
+
+  select year(current_date) as year;
+  select year(to_date('2024-02-01')) as year_from_date;
+  
+  
+  -- get last day of given month
+  select last_day(current_date) as last_day_of_given_month_from_date;
+  select last_day(date('2024-04-15')) as last_day_of_given_month_from_date;
+
+
+  -- use of interval
+  select date(current_date - interval '1 MONTH') AS mnth_1_backdate;
+  select date(current_date - interval '5 MONTH') AS mnth_5_backdate;
+  select date(current_date + interval '1 MONTH') AS mnth_1_forwarddate;
+  select date(current_date - interval '15 day') AS back_15_days;
+  select date(current_date - interval '1 year') AS year_1_backdate;
+
+  select date(date('2024-04-15') - interval '1 MONTH') AS mnth_1_backdate;
+  select date(date('2024-04-15') - interval '5 MONTH') AS mnth_5_backdate;
+  select date(date('2024-04-15') + interval '1 MONTH') AS mnth_1_forwarddate;
+  select date(date('2024-04-15') - interval '15 day') AS back_15_days;
+  select date(date('2024-04-15') - interval '1 year') AS year_1_backdate;
+  select date(date('2024-04-15') - interval '29 hour') AS hours_29_backdate;
+
+  
+SELECT EXTRACT(YEAR FROM CURRENT_DATE) AS YR;
+SELECT EXTRACT(MONTH FROM CURRENT_DATE) AS MTH;
+SELECT EXTRACT(DAY FROM CURRENT_DATE) AS DAY;
+
+SELECT QUARTER(CURRENT_DATE) AS QTR;
+select QUARTER(to_date('2022-08-24')) as qtr;
+
+SELECT to_date('08-23-2022','mm-dd-yyyy') as date;
+SELECT to_date('23-08-2022','dd-mm-yyyy') as date;
+
+
+-- converting date as per the format we want by to_char fn
+SELECT TO_CHAR(TO_DATE('1993-08-17'),'DD-MM-YYYY') AS DATE_DD_MM_YYYY; --THIS WILL BE HIGHLY USED
+SELECT TO_CHAR(TO_DATE('1993-08-17'),'MM-YYYY') AS MM_YYYY;
+SELECT TO_CHAR(TO_DATE('1993-08-17'),'MON-YYYY') AS MON_YYYY;
+SELECT TO_CHAR(TO_DATE('1993-08-17'),'MON-YY') AS DATE_MON_YY;
+SELECT TO_CHAR(TO_DATE('1993-08-17'),'DY') AS DATE_DAY;
+SELECT TO_CHAR(TO_DATE('1993-08-17'),'DY-DD-MM-YYYY') AS DATE_DAY;
+
+SELECT DAYNAME ('1993-08-23');
+SELECT DAYNAME (CURRENT_DATE);
+
+-- datediff
+select datediff('month','2021-06-01',CURRENT_DATE) as difference;
+select datediff('day', '2022-06-01',CURRENT_DATE);
+select datediff('day', '2022-07-23','2023-07-19');
+
+select datediff('MONTH', '2021-06-01',CURRENT_DATE);
+select datediff('YEAR', '2014-06-01',CURRENT_DATE);
+
+select dateadd('day',-23,'2022-06-01');
+select dateadd('day',23,'2022-06-01');
+select dateadd('month',-2,'2022-06-01');
+select dateadd('year',-5,'2022-06-01');
+
+select WEEK(CURRENT_DATE); -- FROM 1ST JAN 2024 HOW MNAY EEKS HAVE SURPASSED
+select MONTH(CURRENT_DATE); -- -- FROM 1ST JAN 2024 HOW MNAY MONTHS HAVE SURPASSED
+
+select datediff('MONTH', '2022-06-01',CURRENT_DATE);
+select datediff('YEAR', '2014-06-01',CURRENT_DATE);
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+  
